@@ -19,7 +19,10 @@ set -x
 apt-get update
 apt-get -y install git rsync python3-sphinx python3-sphinx-rtd-theme python3-stemmer python3-git python3-pip python3-virtualenv python3-setuptools
 
-python3 -m pip install --upgrade rinohtype pygments
+# Debian bookworm marks the system python as "externally managed" (PEP 668), so
+# pip refuses to install rinohtype (needed for the PDF) without this flag. This
+# is a throwaway CI container, so overriding it is safe.
+python3 -m pip install --break-system-packages --upgrade rinohtype pygments
  
 #####################
 # DECLARE VARIABLES #
