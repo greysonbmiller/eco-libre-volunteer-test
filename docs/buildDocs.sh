@@ -19,7 +19,12 @@ set -x
 apt-get update
 apt-get -y install git rsync python3-sphinx python3-sphinx-rtd-theme python3-stemmer python3-git python3-pip python3-virtualenv python3-setuptools
 
-python3 -m pip install --upgrade rinohtype pygments
+# Debian bookworm marks the system python as "externally managed" (PEP 668), so
+# pip refuses to install rinohtype (needed for the PDF) unless we override it.
+# Pin everything apt installed (sphinx, docutils, pygments...) to its current
+# version so pip can't replace Debian's sphinx and break the html build.
+python3 -m pip freeze > /tmp/debian-constraints.txt
+python3 -m pip install --break-system-packages -c /tmp/debian-constraints.txt rinohtype
  
 #####################
 # DECLARE VARIABLES #
