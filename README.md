@@ -18,7 +18,7 @@ The GitHub Pages site is built with Sphinx using the Read The Docs theme. For mo
 
 # How to use this repo
 
-New Eco-Libre volunteers are encourage to do their Volunteer Test by forking this repo. To do so:
+New Eco-Libre volunteers are encouraged to do their Volunteer Test by forking this repo. To do so:
 
 1. Fork this repo (click the "Fork" button at the top of this page)
 1. On your forked repo, go to "Settings" tab. Then click Actions -> General -> Workflow permissions
