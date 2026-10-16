@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreeCAD Macro &mdash; greysonbmiller-volunteer-test 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Greyson Miller’s Eco-Libre Volunteer Test" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            greysonbmiller-volunteer-test
+          </a>
+              <div class="version">
+                main
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FreeCAD Macro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-it-does">What it does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-run-it">How to run it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source">Source</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">greysonbmiller-volunteer-test</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">FreeCAD Macro</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/freecad_macro.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="freecad-macro">
+<h1>FreeCAD Macro<a class="headerlink" href="#freecad-macro" title="Permalink to this heading"></a></h1>
+<p>The model on the main page (a 1 m x 1 m x 20 cm steel sheet with the initials «GM» carved 5 cm deep) was built by this FreeCAD macro, <code class="docutils literal notranslate"><span class="pre">build_gm_sheet.FCMacro</span></code>. The macro ran inside the FreeCAD GUI while <code class="docutils literal notranslate"><span class="pre">recordmydesktop</span></code> recorded the screen, so every step appears in the video.</p>
+<ul class="simple">
+<li><p>Download: <a class="reference download internal" download="" href="_downloads/088954f7e287c6e5affea71c67f02105/build_gm_sheet.FCMacro"><code class="xref download docutils literal notranslate"><span class="pre">build_gm_sheet.FCMacro</span></code></a></p></li>
+<li><p>View on GitHub: <a class="reference external" href="https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/build_gm_sheet.FCMacro">docs/build_gm_sheet.FCMacro</a></p></li>
+</ul>
+<section id="what-it-does">
+<h2>What it does<a class="headerlink" href="#what-it-does" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Creates a new document and a PartDesign <code class="docutils literal notranslate"><span class="pre">Body</span></code>.</p></li>
+<li><p>Opens a sketch on the <code class="docutils literal notranslate"><span class="pre">XY_Plane</span></code> in the <strong>Sketcher</strong> workbench and draws a fully constrained 1000 mm x 1000 mm square, one line at a time.</p></li>
+<li><p><strong>Pads</strong> the square 200 mm and sets the Body’s material to <em>Steel</em>.</p></li>
+<li><p>Opens a second sketch on the <code class="docutils literal notranslate"><span class="pre">XY_Plane</span></code>, offset 200 mm so it sits on the top face, and draws the outlines of block letters <strong>G</strong> and <strong>M</strong> (500 mm tall, 80 mm strokes).</p></li>
+<li><p><strong>Pockets</strong> the letters 50 mm deep.</p></li>
+<li><p>Checks the result (valid solid, 1000 x 1000 x 200 mm bounding box, removed volume equals letter area x 50 mm), saves <code class="docutils literal notranslate"><span class="pre">gm-eco-libre-volunteer-test.FCStd</span></code>, and takes the screenshot shown on the main page.</p></li>
+</ol>
+<p>In the GUI it pauses between steps and opens the Pad and Pocket dialogs, so you can watch each step happen. Run headless, it skips the pauses.</p>
+</section>
+<section id="how-to-run-it">
+<h2>How to run it<a class="headerlink" href="#how-to-run-it" title="Permalink to this heading"></a></h2>
+<p>In the FreeCAD GUI, use <strong>Macro -&gt; Macros…</strong>, choose the folder containing the macro, select it, and click <strong>Execute</strong>. You can also pass it on the command line (FreeCAD from Flathub shown):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># in the GUI</span>
+flatpak<span class="w"> </span>run<span class="w"> </span>org.freecad.FreeCAD<span class="w"> </span>build_gm_sheet.FCMacro
+
+<span class="c1"># headless</span>
+flatpak<span class="w"> </span>run<span class="w"> </span>--command<span class="o">=</span>FreeCADCmd<span class="w"> </span>org.freecad.FreeCAD<span class="w"> </span>build_gm_sheet.FCMacro
+</pre></div>
+</div>
+<p>It saves its output next to the macro, or in <code class="docutils literal notranslate"><span class="pre">$GM_OUT_DIR</span></code> if set. It was tested with FreeCAD 1.1.4.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lines that set the document’s license metadata (CC BY-SA 4.0) and the default output folder were added after the recording. The committed <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> had its license set to match.</p>
+</div>
+</section>
+<section id="source">
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1"># Eco-Libre Volunteer Test: 1 m x 1 m x 20 cm metal sheet with the initials</span>
+<span class="linenos">  2</span><span class="c1"># &quot;GM&quot; carved 5 cm deep using a Sketcher sketch + PartDesign Pocket.</span>
+<span class="linenos">  3</span><span class="c1">#</span>
+<span class="linenos">  4</span><span class="c1"># Run in the FreeCAD GUI (visible, paced for a screen recording):</span>
+<span class="linenos">  5</span><span class="c1">#   freecad build_gm_sheet.FCMacro      (or Macro -&gt; Macros... -&gt; Execute)</span>
+<span class="linenos">  6</span><span class="c1"># or headless:</span>
+<span class="linenos">  7</span><span class="c1">#   FreeCADCmd build_gm_sheet.FCMacro</span>
+<span class="linenos">  8</span><span class="c1">#</span>
+<span class="linenos">  9</span><span class="c1"># Optional environment variables:</span>
+<span class="linenos"> 10</span><span class="c1">#   GM_OUT_DIR        where to save the .FCStd and screenshot (default: next to this macro)</span>
+<span class="linenos"> 11</span><span class="c1">#   GM_START_TRIGGER  wait until this file exists before modelling (to start a screen recorder first)</span>
+<span class="linenos"> 12</span><span class="c1">#   GM_DONE_MARKER    file to create when finished</span>
+<span class="linenos"> 13</span><span class="c1">#</span>
+<span class="linenos"> 14</span><span class="c1"># SPDX-License-Identifier: GPL-3.0-or-later</span>
+<span class="linenos"> 15</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 16</span><span class="kn">import</span> <span class="nn">time</span>
+<span class="linenos"> 17</span>
+<span class="linenos"> 18</span><span class="kn">import</span> <span class="nn">FreeCAD</span> <span class="k">as</span> <span class="nn">App</span>
+<span class="linenos"> 19</span><span class="kn">import</span> <span class="nn">Part</span>
+<span class="linenos"> 20</span><span class="kn">import</span> <span class="nn">Sketcher</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos"> 23</span>    <span class="n">_HERE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="linenos"> 24</span><span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>  <span class="c1"># __file__ isn&#39;t always set when run from the Macro dialog</span>
+<span class="linenos"> 25</span>    <span class="n">_HERE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span>
+<span class="linenos"> 26</span><span class="n">OUT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GM_OUT_DIR&quot;</span><span class="p">,</span> <span class="n">_HERE</span><span class="p">)</span>
+<span class="linenos"> 27</span><span class="n">FCSTD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUT_DIR</span><span class="p">,</span> <span class="s2">&quot;gm-eco-libre-volunteer-test.FCStd&quot;</span><span class="p">)</span>
+<span class="linenos"> 28</span><span class="n">RENDER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUT_DIR</span><span class="p">,</span> <span class="s2">&quot;gm-eco-libre-volunteer-test-render.png&quot;</span><span class="p">)</span>
+<span class="linenos"> 29</span><span class="n">SCREENSHOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUT_DIR</span><span class="p">,</span> <span class="s2">&quot;gm-eco-libre-volunteer-test-screenshot.png&quot;</span><span class="p">)</span>
+<span class="linenos"> 30</span><span class="n">DONE_MARKER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GM_DONE_MARKER&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span><span class="n">GUI</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">GuiUp</span>
+<span class="linenos"> 33</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos"> 34</span>    <span class="kn">import</span> <span class="nn">FreeCADGui</span> <span class="k">as</span> <span class="nn">Gui</span>
+<span class="linenos"> 35</span>    <span class="kn">from</span> <span class="nn">PySide</span> <span class="kn">import</span> <span class="n">QtGui</span>
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="k">def</span> <span class="nf">pause</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span>
+<span class="linenos"> 39</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Let the GUI repaint for a while so each step is visible in the video.&quot;&quot;&quot;</span>
+<span class="linenos"> 40</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos"> 41</span>        <span class="k">return</span>
+<span class="linenos"> 42</span>    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">seconds</span>
+<span class="linenos"> 43</span>    <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+<span class="linenos"> 44</span>        <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">processEvents</span><span class="p">()</span>
+<span class="linenos"> 45</span>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span>
+<span class="linenos"> 48</span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="linenos"> 49</span>    <span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos"> 50</span>        <span class="n">Gui</span><span class="o">.</span><span class="n">SendMsgToActiveView</span><span class="p">(</span><span class="s2">&quot;ViewFit&quot;</span><span class="p">)</span>
+<span class="linenos"> 51</span>    <span class="n">pause</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span><span class="k">def</span> <span class="nf">steel_look</span><span class="p">(</span><span class="o">*</span><span class="n">objs</span><span class="p">):</span>
+<span class="linenos"> 55</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos"> 56</span>        <span class="k">return</span>
+<span class="linenos"> 57</span>    <span class="n">look</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="n">DiffuseColor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mf">0.77</span><span class="p">),</span> <span class="n">AmbientColor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">),</span>
+<span class="linenos"> 58</span>                        <span class="n">SpecularColor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">),</span> <span class="n">Shininess</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="linenos"> 59</span>    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
+<span class="linenos"> 60</span>        <span class="n">o</span><span class="o">.</span><span class="n">ViewObject</span><span class="o">.</span><span class="n">ShapeAppearance</span> <span class="o">=</span> <span class="p">[</span><span class="n">look</span><span class="p">]</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="k">def</span> <span class="nf">oblique</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="linenos"> 64</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Tilted front view that keeps the initials readable.&quot;&quot;&quot;</span>
+<span class="linenos"> 65</span>    <span class="n">tilt</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">Rotation</span><span class="p">(</span><span class="n">App</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">50</span><span class="p">)</span>
+<span class="linenos"> 66</span>    <span class="n">view</span><span class="o">.</span><span class="n">setCameraOrientation</span><span class="p">(</span><span class="n">App</span><span class="o">.</span><span class="n">Rotation</span><span class="p">(</span><span class="n">App</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">spin</span><span class="p">)</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">tilt</span><span class="p">))</span>
+<span class="linenos"> 67</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">SendMsgToActiveView</span><span class="p">(</span><span class="s2">&quot;ViewFit&quot;</span><span class="p">)</span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="k">def</span> <span class="nf">add_polygon</span><span class="p">(</span><span class="n">sketch</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">step_pause</span><span class="p">):</span>
+<span class="linenos"> 71</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a closed polygon of line segments, constraining shared endpoints.&quot;&quot;&quot;</span>
+<span class="linenos"> 72</span>    <span class="n">first</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="linenos"> 73</span>    <span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="linenos"> 74</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)):</span>
+<span class="linenos"> 75</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="linenos"> 76</span>        <span class="n">b</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)]</span>
+<span class="linenos"> 77</span>        <span class="n">gid</span> <span class="o">=</span> <span class="n">sketch</span><span class="o">.</span><span class="n">addGeometry</span><span class="p">(</span><span class="n">Part</span><span class="o">.</span><span class="n">LineSegment</span><span class="p">(</span>
+<span class="linenos"> 78</span>            <span class="n">App</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">App</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)),</span> <span class="kc">False</span><span class="p">)</span>
+<span class="linenos"> 79</span>        <span class="k">if</span> <span class="n">prev</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 80</span>            <span class="n">sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;Coincident&quot;</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 81</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 82</span>            <span class="n">first</span> <span class="o">=</span> <span class="n">gid</span>
+<span class="linenos"> 83</span>        <span class="n">prev</span> <span class="o">=</span> <span class="n">gid</span>
+<span class="linenos"> 84</span>        <span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos"> 85</span>            <span class="n">App</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos"> 86</span>        <span class="n">pause</span><span class="p">(</span><span class="n">step_pause</span><span class="p">)</span>
+<span class="linenos"> 87</span>    <span class="n">sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;Coincident&quot;</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="c1"># Block-letter outlines in mm, origin at each letter&#39;s lower-left corner.</span>
+<span class="linenos"> 91</span><span class="c1"># Letters are 500 mm tall with 80 mm strokes.</span>
+<span class="linenos"> 92</span><span class="n">LETTER_G</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 93</span>    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span> <span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span> <span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">170</span><span class="p">),</span> <span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="mi">170</span><span class="p">),</span>
+<span class="linenos"> 94</span>    <span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">420</span><span class="p">),</span> <span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">420</span><span class="p">),</span> <span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+<span class="linenos"> 95</span><span class="p">]</span>
+<span class="linenos"> 96</span><span class="n">LETTER_M</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 97</span>    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">330</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">180</span><span class="p">),</span> <span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">330</span><span class="p">),</span> <span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<span class="linenos"> 98</span>    <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">330</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+<span class="linenos"> 99</span><span class="p">]</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="c1"># Optionally wait (with FreeCAD already on screen) until the screen recorder</span>
+<span class="linenos">102</span><span class="c1"># has started and created this trigger file.</span>
+<span class="linenos">103</span><span class="n">START_TRIGGER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GM_START_TRIGGER&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="linenos">104</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">105</span>    <span class="n">mw</span> <span class="o">=</span> <span class="n">Gui</span><span class="o">.</span><span class="n">getMainWindow</span><span class="p">()</span>
+<span class="linenos">106</span>    <span class="n">mw</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">()</span>
+<span class="linenos">107</span>    <span class="k">while</span> <span class="n">START_TRIGGER</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">START_TRIGGER</span><span class="p">):</span>
+<span class="linenos">108</span>        <span class="n">pause</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="c1"># --- New document -----------------------------------------------------------</span>
+<span class="linenos">111</span><span class="n">doc</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">newDocument</span><span class="p">(</span><span class="s2">&quot;GM_metal_sheet&quot;</span><span class="p">)</span>
+<span class="linenos">112</span><span class="n">doc</span><span class="o">.</span><span class="n">CreatedBy</span> <span class="o">=</span> <span class="s2">&quot;Greyson Miller&quot;</span>
+<span class="linenos">113</span><span class="n">doc</span><span class="o">.</span><span class="n">License</span> <span class="o">=</span> <span class="s2">&quot;Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)&quot;</span>
+<span class="linenos">114</span><span class="n">doc</span><span class="o">.</span><span class="n">LicenseURL</span> <span class="o">=</span> <span class="s2">&quot;https://creativecommons.org/licenses/by-sa/4.0/&quot;</span>
+<span class="linenos">115</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">116</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">activateWorkbench</span><span class="p">(</span><span class="s2">&quot;PartDesignWorkbench&quot;</span><span class="p">)</span>
+<span class="linenos">117</span>    <span class="n">pause</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span><span class="n">body</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">addObject</span><span class="p">(</span><span class="s2">&quot;PartDesign::Body&quot;</span><span class="p">,</span> <span class="s2">&quot;Body&quot;</span><span class="p">)</span>
+<span class="linenos">120</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">121</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="o">.</span><span class="n">setActiveObject</span><span class="p">(</span><span class="s2">&quot;pdbody&quot;</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+<span class="linenos">122</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="o">.</span><span class="n">viewIsometric</span><span class="p">()</span>
+<span class="linenos">123</span><span class="n">pause</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span><span class="n">xy_plane</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">OriginFeatures</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># XY_Plane</span>
+<span class="linenos">126</span><span class="k">assert</span> <span class="n">xy_plane</span><span class="o">.</span><span class="n">Role</span> <span class="o">==</span> <span class="s2">&quot;XY_Plane&quot;</span><span class="p">,</span> <span class="n">xy_plane</span><span class="o">.</span><span class="n">Role</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="c1"># --- Sketch 1: 1000 x 1000 mm outline of the metal sheet ----------------------</span>
+<span class="linenos">129</span><span class="n">sheet_sketch</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">newObject</span><span class="p">(</span><span class="s2">&quot;Sketcher::SketchObject&quot;</span><span class="p">,</span> <span class="s2">&quot;SheetSketch&quot;</span><span class="p">)</span>
+<span class="linenos">130</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">AttachmentSupport</span> <span class="o">=</span> <span class="p">(</span><span class="n">xy_plane</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">])</span>
+<span class="linenos">131</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">MapMode</span> <span class="o">=</span> <span class="s2">&quot;FlatFace&quot;</span>
+<span class="linenos">132</span><span class="n">doc</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos">133</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">134</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">setEdit</span><span class="p">(</span><span class="n">sheet_sketch</span><span class="p">)</span>  <span class="c1"># switches to the Sketcher workbench</span>
+<span class="linenos">135</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="o">.</span><span class="n">viewTop</span><span class="p">()</span>
+<span class="linenos">136</span>    <span class="n">pause</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span><span class="n">add_polygon</span><span class="p">(</span><span class="n">sheet_sketch</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)],</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">139</span><span class="c1"># Fully constrain the square: horizontal/vertical edges, 1000 mm sides, centred.</span>
+<span class="linenos">140</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;Horizontal&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="linenos">141</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;Horizontal&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="linenos">142</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;Vertical&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos">143</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;Vertical&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos">144</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;DistanceX&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">))</span>
+<span class="linenos">145</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;DistanceY&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">))</span>
+<span class="linenos">146</span><span class="n">sheet_sketch</span><span class="o">.</span><span class="n">addConstraint</span><span class="p">(</span><span class="n">Sketcher</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s2">&quot;Symmetric&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos">147</span><span class="n">doc</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos">148</span><span class="n">fit</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="linenos">149</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">150</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">resetEdit</span><span class="p">()</span>
+<span class="linenos">151</span><span class="n">pause</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">152</span>
+<span class="linenos">153</span><span class="c1"># --- Pad 200 mm: the 1 m x 1 m x 20 cm sheet --------------------------------</span>
+<span class="linenos">154</span><span class="n">pad</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">newObject</span><span class="p">(</span><span class="s2">&quot;PartDesign::Pad&quot;</span><span class="p">,</span> <span class="s2">&quot;Sheet&quot;</span><span class="p">)</span>
+<span class="linenos">155</span><span class="n">pad</span><span class="o">.</span><span class="n">Profile</span> <span class="o">=</span> <span class="n">sheet_sketch</span>
+<span class="linenos">156</span><span class="n">pad</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="mf">200.0</span>  <span class="c1"># 20 cm</span>
+<span class="linenos">157</span><span class="n">doc</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos">158</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">159</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">setEdit</span><span class="p">(</span><span class="n">pad</span><span class="p">)</span>
+<span class="linenos">160</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="o">.</span><span class="n">viewIsometric</span><span class="p">()</span>
+<span class="linenos">161</span>    <span class="n">fit</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="linenos">162</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">resetEdit</span><span class="p">()</span>
+<span class="linenos">163</span>    <span class="n">sheet_sketch</span><span class="o">.</span><span class="n">Visibility</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">164</span>
+<span class="linenos">165</span><span class="c1"># Steel material on the body, so it is literally a sheet of metal.</span>
+<span class="linenos">166</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos">167</span>    <span class="kn">import</span> <span class="nn">Materials</span>
+<span class="linenos">168</span>    <span class="n">mm</span> <span class="o">=</span> <span class="n">Materials</span><span class="o">.</span><span class="n">MaterialManager</span><span class="p">()</span>
+<span class="linenos">169</span>    <span class="n">steel</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">mm</span><span class="o">.</span><span class="n">Materials</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">Name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;Steel-Generic&quot;</span><span class="p">,</span> <span class="s2">&quot;Steel&quot;</span><span class="p">))</span>
+<span class="linenos">170</span>    <span class="n">body</span><span class="o">.</span><span class="n">ShapeMaterial</span> <span class="o">=</span> <span class="n">steel</span>
+<span class="linenos">171</span><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># material library differs between FreeCAD versions</span>
+<span class="linenos">172</span>    <span class="n">App</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">PrintWarning</span><span class="p">(</span><span class="s2">&quot;Could not assign steel material: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="linenos">173</span><span class="n">doc</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos">174</span><span class="n">steel_look</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">pad</span><span class="p">)</span>
+<span class="linenos">175</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">176</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="o">.</span><span class="n">viewIsometric</span><span class="p">()</span>
+<span class="linenos">177</span><span class="n">fit</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="linenos">178</span>
+<span class="linenos">179</span><span class="c1"># --- Sketch 2: initials &quot;GM&quot; on the top face (z = 200 mm) -------------------</span>
+<span class="linenos">180</span><span class="n">letters</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">newObject</span><span class="p">(</span><span class="s2">&quot;Sketcher::SketchObject&quot;</span><span class="p">,</span> <span class="s2">&quot;InitialsSketch&quot;</span><span class="p">)</span>
+<span class="linenos">181</span><span class="n">letters</span><span class="o">.</span><span class="n">AttachmentSupport</span> <span class="o">=</span> <span class="p">(</span><span class="n">xy_plane</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">])</span>
+<span class="linenos">182</span><span class="n">letters</span><span class="o">.</span><span class="n">MapMode</span> <span class="o">=</span> <span class="s2">&quot;FlatFace&quot;</span>
+<span class="linenos">183</span><span class="n">letters</span><span class="o">.</span><span class="n">AttachmentOffset</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">Placement</span><span class="p">(</span><span class="n">App</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">App</span><span class="o">.</span><span class="n">Rotation</span><span class="p">())</span>
+<span class="linenos">184</span><span class="n">doc</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos">185</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">186</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">setEdit</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span>
+<span class="linenos">187</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="o">.</span><span class="n">viewTop</span><span class="p">()</span>
+<span class="linenos">188</span>    <span class="n">fit</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="linenos">189</span>
+<span class="linenos">190</span><span class="n">add_polygon</span><span class="p">(</span><span class="n">letters</span><span class="p">,</span> <span class="n">LETTER_G</span><span class="p">,</span> <span class="o">-</span><span class="mi">420</span><span class="p">,</span> <span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="linenos">191</span><span class="n">add_polygon</span><span class="p">(</span><span class="n">letters</span><span class="p">,</span> <span class="n">LETTER_M</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="linenos">192</span><span class="n">doc</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos">193</span><span class="n">pause</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="linenos">194</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">195</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">resetEdit</span><span class="p">()</span>
+<span class="linenos">196</span><span class="n">pause</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">197</span>
+<span class="linenos">198</span><span class="c1"># --- Pocket 50 mm: carve the initials 5 cm deep -----------------------------</span>
+<span class="linenos">199</span><span class="n">pocket</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">newObject</span><span class="p">(</span><span class="s2">&quot;PartDesign::Pocket&quot;</span><span class="p">,</span> <span class="s2">&quot;CarvedInitials&quot;</span><span class="p">)</span>
+<span class="linenos">200</span><span class="n">pocket</span><span class="o">.</span><span class="n">Profile</span> <span class="o">=</span> <span class="n">letters</span>
+<span class="linenos">201</span><span class="n">pocket</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="mf">50.0</span>  <span class="c1"># 5 cm</span>
+<span class="linenos">202</span><span class="n">doc</span><span class="o">.</span><span class="n">recompute</span><span class="p">()</span>
+<span class="linenos">203</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">204</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">setEdit</span><span class="p">(</span><span class="n">pocket</span><span class="p">)</span>
+<span class="linenos">205</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="o">.</span><span class="n">viewIsometric</span><span class="p">()</span>
+<span class="linenos">206</span>    <span class="n">fit</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="linenos">207</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">resetEdit</span><span class="p">()</span>
+<span class="linenos">208</span>    <span class="n">letters</span><span class="o">.</span><span class="n">Visibility</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">209</span><span class="n">steel_look</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">pad</span><span class="p">,</span> <span class="n">pocket</span><span class="p">)</span>
+<span class="linenos">210</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">211</span>    <span class="n">oblique</span><span class="p">(</span><span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span><span class="p">)</span>
+<span class="linenos">212</span><span class="n">pause</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">213</span>
+<span class="linenos">214</span><span class="c1"># --- Sanity checks ------------------------------------------------------------</span>
+<span class="linenos">215</span><span class="n">shape</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">Shape</span>
+<span class="linenos">216</span><span class="n">bb</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">BoundBox</span>
+<span class="linenos">217</span><span class="n">sheet_volume</span> <span class="o">=</span> <span class="mf">1000.0</span> <span class="o">*</span> <span class="mf">1000.0</span> <span class="o">*</span> <span class="mf">200.0</span>
+<span class="linenos">218</span><span class="n">removed</span> <span class="o">=</span> <span class="n">sheet_volume</span> <span class="o">-</span> <span class="n">shape</span><span class="o">.</span><span class="n">Volume</span>
+<span class="linenos">219</span><span class="n">App</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">PrintMessage</span><span class="p">(</span>
+<span class="linenos">220</span>    <span class="s2">&quot;GM_RESULT valid=</span><span class="si">{}</span><span class="s2"> bbox=(</span><span class="si">{:.1f}</span><span class="s2"> x </span><span class="si">{:.1f}</span><span class="s2"> x </span><span class="si">{:.1f}</span><span class="s2">) mm removed=</span><span class="si">{:.0f}</span><span class="s2"> mm^3 &quot;</span>
+<span class="linenos">221</span>    <span class="s2">&quot;pocket_depth=</span><span class="si">{:.1f}</span><span class="s2"> mm</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="linenos">222</span>        <span class="n">shape</span><span class="o">.</span><span class="n">isValid</span><span class="p">(),</span> <span class="n">bb</span><span class="o">.</span><span class="n">XLength</span><span class="p">,</span> <span class="n">bb</span><span class="o">.</span><span class="n">YLength</span><span class="p">,</span> <span class="n">bb</span><span class="o">.</span><span class="n">ZLength</span><span class="p">,</span> <span class="n">removed</span><span class="p">,</span> <span class="n">pocket</span><span class="o">.</span><span class="n">Length</span><span class="o">.</span><span class="n">Value</span><span class="p">))</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span><span class="n">doc</span><span class="o">.</span><span class="n">saveAs</span><span class="p">(</span><span class="n">FCSTD</span><span class="p">)</span>
+<span class="linenos">225</span>
+<span class="linenos">226</span><span class="k">if</span> <span class="n">GUI</span><span class="p">:</span>
+<span class="linenos">227</span>    <span class="c1"># Rotate a little so the 5 cm depth of the carving is visible, then capture.</span>
+<span class="linenos">228</span>    <span class="n">view</span> <span class="o">=</span> <span class="n">Gui</span><span class="o">.</span><span class="n">ActiveDocument</span><span class="o">.</span><span class="n">ActiveView</span>
+<span class="linenos">229</span>    <span class="n">Gui</span><span class="o">.</span><span class="n">Selection</span><span class="o">.</span><span class="n">clearSelection</span><span class="p">()</span>
+<span class="linenos">230</span>    <span class="n">oblique</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">spin</span><span class="o">=-</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">231</span>    <span class="n">pause</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">232</span>    <span class="n">view</span><span class="o">.</span><span class="n">saveImage</span><span class="p">(</span><span class="n">RENDER</span><span class="p">,</span> <span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">)</span>
+<span class="linenos">233</span>    <span class="n">shot</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="o">.</span><span class="n">primaryScreen</span><span class="p">()</span><span class="o">.</span><span class="n">grabWindow</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">winId</span><span class="p">())</span>
+<span class="linenos">234</span>    <span class="n">shot</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">SCREENSHOT</span><span class="p">,</span> <span class="s2">&quot;PNG&quot;</span><span class="p">)</span>
+<span class="linenos">235</span>    <span class="n">pause</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">236</span>
+<span class="linenos">237</span>    <span class="c1"># Slow orbit around the finished part to show the 5 cm deep carving.</span>
+<span class="linenos">238</span>    <span class="k">for</span> <span class="n">angle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">341</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+<span class="linenos">239</span>        <span class="n">oblique</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">spin</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span>
+<span class="linenos">240</span>        <span class="n">pause</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="linenos">241</span>    <span class="n">pause</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="linenos">242</span>
+<span class="linenos">243</span><span class="k">if</span> <span class="n">DONE_MARKER</span><span class="p">:</span>
+<span class="linenos">244</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DONE_MARKER</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">245</span>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;done</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Greyson Miller’s Eco-Libre Volunteer Test" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Greyson Miller.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: main
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <dl>
+        <dt>Languages</dt>
+        
+          
+          <dd><a href="/eco-libre-volunteer-test/en/main/">en</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/eco-libre-volunteer-test/es/main/">es</a></dd>
+           </strong> 
+        
+      </dl>
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/eco-libre-volunteer-test/es/main/">main</a></dd>
+           </strong> 
+        
+      </dl>
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/eco-libre-volunteer-test/es/main/eco-libre-volunteer-test_es_main.pdf">pdf</a></dd>
+        
+          <dd><a href="/eco-libre-volunteer-test/es/main/eco-libre-volunteer-test_es_main.epub">epub</a></dd>
+        
+      </dl>
+      
+      
+      <hr/>
+      <a href="https://tech.michaelaltfield.net/2020/07/18/sphinx-rtd-github-pages-1/">Continuous Documentation</a> hosting provided by <a href="https://pages.github.com/">GitHub Pages</a>.
+ 
+    </div>
+  </div>
+
+ <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

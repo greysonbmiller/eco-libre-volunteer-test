@@ -1,0 +1,245 @@
+# Eco-Libre Volunteer Test: 1 m x 1 m x 20 cm metal sheet with the initials
+# "GM" carved 5 cm deep using a Sketcher sketch + PartDesign Pocket.
+#
+# Run in the FreeCAD GUI (visible, paced for a screen recording):
+#   freecad build_gm_sheet.FCMacro      (or Macro -> Macros... -> Execute)
+# or headless:
+#   FreeCADCmd build_gm_sheet.FCMacro
+#
+# Optional environment variables:
+#   GM_OUT_DIR        where to save the .FCStd and screenshot (default: next to this macro)
+#   GM_START_TRIGGER  wait until this file exists before modelling (to start a screen recorder first)
+#   GM_DONE_MARKER    file to create when finished
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+import os
+import time
+
+import FreeCAD as App
+import Part
+import Sketcher
+
+try:
+    _HERE = os.path.dirname(os.path.abspath(__file__))
+except NameError:  # __file__ isn't always set when run from the Macro dialog
+    _HERE = os.path.expanduser("~")
+OUT_DIR = os.environ.get("GM_OUT_DIR", _HERE)
+FCSTD = os.path.join(OUT_DIR, "gm-eco-libre-volunteer-test.FCStd")
+RENDER = os.path.join(OUT_DIR, "gm-eco-libre-volunteer-test-render.png")
+SCREENSHOT = os.path.join(OUT_DIR, "gm-eco-libre-volunteer-test-screenshot.png")
+DONE_MARKER = os.environ.get("GM_DONE_MARKER", "")
+
+GUI = App.GuiUp
+if GUI:
+    import FreeCADGui as Gui
+    from PySide import QtGui
+
+
+def pause(seconds):
+    """Let the GUI repaint for a while so each step is visible in the video."""
+    if not GUI:
+        return
+    end = time.time() + seconds
+    while time.time() < end:
+        QtGui.QApplication.processEvents()
+        time.sleep(0.02)
+
+
+def fit(seconds=1.0):
+    if GUI:
+        Gui.SendMsgToActiveView("ViewFit")
+    pause(seconds)
+
+
+def steel_look(*objs):
+    if not GUI:
+        return
+    look = App.Material(DiffuseColor=(0.72, 0.74, 0.77), AmbientColor=(0.35, 0.36, 0.38),
+                        SpecularColor=(0.55, 0.55, 0.55), Shininess=0.35)
+    for o in objs:
+        o.ViewObject.ShapeAppearance = [look]
+
+
+def oblique(view, spin=0):
+    """Tilted front view that keeps the initials readable."""
+    tilt = App.Rotation(App.Vector(1, 0, 0), 50)
+    view.setCameraOrientation(App.Rotation(App.Vector(0, 0, 1), spin).multiply(tilt))
+    Gui.SendMsgToActiveView("ViewFit")
+
+
+def add_polygon(sketch, pts, x0, y0, step_pause):
+    """Add a closed polygon of line segments, constraining shared endpoints."""
+    first = None
+    prev = None
+    for i in range(len(pts)):
+        a = pts[i]
+        b = pts[(i + 1) % len(pts)]
+        gid = sketch.addGeometry(Part.LineSegment(
+            App.Vector(x0 + a[0], y0 + a[1], 0), App.Vector(x0 + b[0], y0 + b[1], 0)), False)
+        if prev is not None:
+            sketch.addConstraint(Sketcher.Constraint("Coincident", prev, 2, gid, 1))
+        else:
+            first = gid
+        prev = gid
+        if GUI:
+            App.ActiveDocument.recompute()
+        pause(step_pause)
+    sketch.addConstraint(Sketcher.Constraint("Coincident", prev, 2, first, 1))
+
+
+# Block-letter outlines in mm, origin at each letter's lower-left corner.
+# Letters are 500 mm tall with 80 mm strokes.
+LETTER_G = [
+    (0, 0), (350, 0), (350, 250), (175, 250), (175, 170), (270, 170),
+    (270, 80), (80, 80), (80, 420), (350, 420), (350, 500), (0, 500),
+]
+LETTER_M = [
+    (0, 0), (80, 0), (80, 330), (200, 180), (320, 330), (320, 0),
+    (400, 0), (400, 500), (320, 500), (200, 330), (80, 500), (0, 500),
+]
+
+# Optionally wait (with FreeCAD already on screen) until the screen recorder
+# has started and created this trigger file.
+START_TRIGGER = os.environ.get("GM_START_TRIGGER", "")
+if GUI:
+    mw = Gui.getMainWindow()
+    mw.showMaximized()
+    while START_TRIGGER and not os.path.exists(START_TRIGGER):
+        pause(0.2)
+
+# --- New document -----------------------------------------------------------
+doc = App.newDocument("GM_metal_sheet")
+doc.CreatedBy = "Greyson Miller"
+doc.License = "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+doc.LicenseURL = "https://creativecommons.org/licenses/by-sa/4.0/"
+if GUI:
+    Gui.activateWorkbench("PartDesignWorkbench")
+    pause(2.0)
+
+body = doc.addObject("PartDesign::Body", "Body")
+if GUI:
+    Gui.ActiveDocument.ActiveView.setActiveObject("pdbody", body)
+    Gui.ActiveDocument.ActiveView.viewIsometric()
+pause(1.0)
+
+xy_plane = body.Origin.OriginFeatures[3]  # XY_Plane
+assert xy_plane.Role == "XY_Plane", xy_plane.Role
+
+# --- Sketch 1: 1000 x 1000 mm outline of the metal sheet ----------------------
+sheet_sketch = body.newObject("Sketcher::SketchObject", "SheetSketch")
+sheet_sketch.AttachmentSupport = (xy_plane, [""])
+sheet_sketch.MapMode = "FlatFace"
+doc.recompute()
+if GUI:
+    Gui.ActiveDocument.setEdit(sheet_sketch)  # switches to the Sketcher workbench
+    Gui.ActiveDocument.ActiveView.viewTop()
+    pause(1.5)
+
+add_polygon(sheet_sketch, [(0, 0), (1000, 0), (1000, 1000), (0, 1000)], -500, -500, 2.0)
+# Fully constrain the square: horizontal/vertical edges, 1000 mm sides, centred.
+sheet_sketch.addConstraint(Sketcher.Constraint("Horizontal", 0))
+sheet_sketch.addConstraint(Sketcher.Constraint("Horizontal", 2))
+sheet_sketch.addConstraint(Sketcher.Constraint("Vertical", 1))
+sheet_sketch.addConstraint(Sketcher.Constraint("Vertical", 3))
+sheet_sketch.addConstraint(Sketcher.Constraint("DistanceX", 0, 1, 0, 2, 1000.0))
+sheet_sketch.addConstraint(Sketcher.Constraint("DistanceY", 1, 1, 1, 2, 1000.0))
+sheet_sketch.addConstraint(Sketcher.Constraint("Symmetric", 0, 1, 1, 2, -1, 1))
+doc.recompute()
+fit(1.5)
+if GUI:
+    Gui.ActiveDocument.resetEdit()
+pause(1.0)
+
+# --- Pad 200 mm: the 1 m x 1 m x 20 cm sheet --------------------------------
+pad = body.newObject("PartDesign::Pad", "Sheet")
+pad.Profile = sheet_sketch
+pad.Length = 200.0  # 20 cm
+doc.recompute()
+if GUI:
+    Gui.ActiveDocument.setEdit(pad)
+    Gui.ActiveDocument.ActiveView.viewIsometric()
+    fit(4.0)
+    Gui.ActiveDocument.resetEdit()
+    sheet_sketch.Visibility = False
+
+# Steel material on the body, so it is literally a sheet of metal.
+try:
+    import Materials
+    mm = Materials.MaterialManager()
+    steel = next(m for m in mm.Materials.values() if m.Name in ("Steel-Generic", "Steel"))
+    body.ShapeMaterial = steel
+except Exception as e:  # material library differs between FreeCAD versions
+    App.Console.PrintWarning("Could not assign steel material: {}\n".format(e))
+doc.recompute()
+steel_look(body, pad)
+if GUI:
+    Gui.ActiveDocument.ActiveView.viewIsometric()
+fit(2.5)
+
+# --- Sketch 2: initials "GM" on the top face (z = 200 mm) -------------------
+letters = body.newObject("Sketcher::SketchObject", "InitialsSketch")
+letters.AttachmentSupport = (xy_plane, [""])
+letters.MapMode = "FlatFace"
+letters.AttachmentOffset = App.Placement(App.Vector(0, 0, 200), App.Rotation())
+doc.recompute()
+if GUI:
+    Gui.ActiveDocument.setEdit(letters)
+    Gui.ActiveDocument.ActiveView.viewTop()
+    fit(1.5)
+
+add_polygon(letters, LETTER_G, -420, -250, 1.5)
+add_polygon(letters, LETTER_M, 30, -250, 1.5)
+doc.recompute()
+pause(1.5)
+if GUI:
+    Gui.ActiveDocument.resetEdit()
+pause(1.0)
+
+# --- Pocket 50 mm: carve the initials 5 cm deep -----------------------------
+pocket = body.newObject("PartDesign::Pocket", "CarvedInitials")
+pocket.Profile = letters
+pocket.Length = 50.0  # 5 cm
+doc.recompute()
+if GUI:
+    Gui.ActiveDocument.setEdit(pocket)
+    Gui.ActiveDocument.ActiveView.viewIsometric()
+    fit(4.0)
+    Gui.ActiveDocument.resetEdit()
+    letters.Visibility = False
+steel_look(body, pad, pocket)
+if GUI:
+    oblique(Gui.ActiveDocument.ActiveView)
+pause(2.0)
+
+# --- Sanity checks ------------------------------------------------------------
+shape = body.Shape
+bb = shape.BoundBox
+sheet_volume = 1000.0 * 1000.0 * 200.0
+removed = sheet_volume - shape.Volume
+App.Console.PrintMessage(
+    "GM_RESULT valid={} bbox=({:.1f} x {:.1f} x {:.1f}) mm removed={:.0f} mm^3 "
+    "pocket_depth={:.1f} mm\n".format(
+        shape.isValid(), bb.XLength, bb.YLength, bb.ZLength, removed, pocket.Length.Value))
+
+doc.saveAs(FCSTD)
+
+if GUI:
+    # Rotate a little so the 5 cm depth of the carving is visible, then capture.
+    view = Gui.ActiveDocument.ActiveView
+    Gui.Selection.clearSelection()
+    oblique(view, spin=-20)
+    pause(2.0)
+    view.saveImage(RENDER, 1920, 1080, "White")
+    shot = QtGui.QApplication.primaryScreen().grabWindow(mw.winId())
+    shot.save(SCREENSHOT, "PNG")
+    pause(1.0)
+
+    # Slow orbit around the finished part to show the 5 cm deep carving.
+    for angle in range(-20, 341, 2):
+        oblique(view, spin=angle)
+        pause(0.05)
+    pause(3.0)
+
+if DONE_MARKER:
+    with open(DONE_MARKER, "w") as f:
+        f.write("done\n")
