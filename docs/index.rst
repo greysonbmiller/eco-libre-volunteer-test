@@ -24,7 +24,9 @@ The video below shows the sheet of metal being created and the initials being ca
 
 .. raw:: html
 
-        <iframe title="Greyson Miller's Eco-Libre Volunteer Test" width="560" height="315" src="PEERTUBE_EMBED_URL" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        <iframe title="Greyson Miller's Eco-Libre Volunteer Test (2026.10)" width="560" height="315" src="https://peertube.watch/videos/embed/a8wNhiH1Hc4WimVL8e41Ck" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+
+Watch it on PeerTube: https://peertube.watch/w/a8wNhiH1Hc4WimVL8e41Ck
 
 What I did in FreeCAD
 ---------------------
