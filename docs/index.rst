@@ -8,6 +8,8 @@ Greyson Miller's Eco-Libre Volunteer Test
    :maxdepth: 2
    :caption: Contents:
 
+   freecad_macro
+
 This documentation is the final deliverable of the `Eco-Libre Volunteer Test <https://eco-libre.github.io/volunteer-test/en/main/>`_, performed by Greyson Miller.
 
 .. figure:: /gm-eco-libre-volunteer-test-screenshot.png
@@ -40,6 +42,8 @@ The model was built in FreeCAD 1.1 (Flatpak) on Linux Mint 22.2, using the **Par
 #. **Carving.** Closed the sketch and used **Pocket** with a length of 50 mm, carving the initials 5 cm deep into the metal.
 #. **Checking the result.** The final solid is valid, its bounding box is 1000 x 1000 x 200 mm, and the volume removed is 11,140,000 mm\ :sup:`3`. That is exactly the area of the two letters (104,400 + 118,400 mm\ :sup:`2`) times the 50 mm depth.
 
+The model in the video was built by running the FreeCAD macro ``build_gm_sheet.FCMacro`` in the FreeCAD GUI. It performs all of the steps above, and you can use it to reproduce the model. See :doc:`freecad_macro` for the full source and how to run it.
+
 What I did in kdenlive
 ----------------------
 
@@ -55,6 +59,7 @@ Files
 All source files are in the `docs/ <https://github.com/greysonbmiller/eco-libre-volunteer-test/tree/main/docs>`_ directory of this repo:
 
 * `gm-eco-libre-volunteer-test.FCStd <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/gm-eco-libre-volunteer-test.FCStd>`_: the FreeCAD model
+* `build_gm_sheet.FCMacro <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/build_gm_sheet.FCMacro>`_: the FreeCAD macro that builds the model (:doc:`source and instructions <freecad_macro>`)
 * `gm-recordmydesktop.ogv <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/gm-recordmydesktop.ogv>`_: the source screen recording from ``recordmydesktop``
 * `gm-eco-libre-volunteer-test.kdenlive <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/gm-eco-libre-volunteer-test.kdenlive>`_: the kdenlive project
 * `John_Harrison_-_Vivaldi_Spring_Mvt_1_Allegro.mp3 <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/John_Harrison_-_Vivaldi_Spring_Mvt_1_Allegro.mp3>`_: the background soundtrack
