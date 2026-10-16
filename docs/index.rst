@@ -1,72 +1,106 @@
-.. helloWorld documentation master file, created by
-   sphinx-quickstart on Fri Jul 17 10:38:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. Greyson Miller's Eco-Libre Volunteer Test.
+   Forked from Michael Altfield's test: https://github.com/maltfield/eco-libre-volunteer-test
 
-Michael Alfield's Eco-Libre Volunteer Test
-==========================================
+Greyson Miller's Eco-Libre Volunteer Test
+=========================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-This documentation is the final deliverable of the Eco-Libre Volunteer Test, preformed by Michael Altfield.
+This documentation is the final deliverable of the `Eco-Libre Volunteer Test <https://eco-libre.github.io/volunteer-test/en/main/>`_, performed by Greyson Miller.
 
-.. figure:: /eco-libre-volunteer-test2.jpg
+.. figure:: /gm-eco-libre-volunteer-test-screenshot.png
   :align: center
 
-  Screenshot of the FreeCAD object with my initials carved into them, as required by the Eco-Libre Volunteer Test
+  Screenshot of the FreeCAD object: a 1 m x 1 m x 20 cm sheet of steel with my initials "GM" carved 5 cm deep
 
-The purpose of this test is to demonstrate experience with all of the tools necessary to be successful as a volunteer with Eco-Libre. These tools include: GNU/Linux, git, FreeCAD, recordmydesktop, kdenlive, and PeerTube. The test also demonstrates a familiarity with open-source licensing, specifically the `Creative Commons Attribution-ShareAlike 4.0 International <https://creativecommons.org/licenses/by-sa/4.0/>`_ license, under which all of Eco-Libre's works are licensed.
+The purpose of this test is to demonstrate experience with the tools needed to be successful as a volunteer with Eco-Libre: GNU/Linux, git, FreeCAD, recordmydesktop, kdenlive, PeerTube, and Sphinx. It also demonstrates familiarity with open-source licensing, specifically the `Creative Commons Attribution-ShareAlike 4.0 International <https://creativecommons.org/licenses/by-sa/4.0/>`_ license, under which all of Eco-Libre's works are licensed.
 
-Other key tools that are necessary for volunteering with Eco-Libre, but were not included in this test for brevity and simplicity, include inkscape, gimp, audacity, wordpress, and mediawiki.
+Video
+-----
 
-Please see the video below showing how I carved my initials into the sheet of metal in FreeCAD.
+The video below shows the sheet of metal being created and the initials being carved in FreeCAD. It was recorded with ``recordmydesktop``, sped up to 30 seconds in kdenlive, given a CC BY-SA background soundtrack, and published on PeerTube under CC BY-SA.
 
 .. raw:: html
 
-        <iframe title="Michael Altfield's Eco-Libre Volunteer Test (2026.02)" width="560" height="315" src="https://peertube.linuxrocks.online/videos/embed/50d9585c-a912-4b1d-94c9-b7a09a456187" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        <iframe title="Greyson Miller's Eco-Libre Volunteer Test" width="560" height="315" src="PEERTUBE_EMBED_URL" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
 
-Pain Points
------------
+What I did in FreeCAD
+---------------------
 
-This section will document the issues I had with completing the Eco-Libre Volunteer Test. I'm writing this to help the next person, who can review prior volunteers' tests for guidance.
+The model was built in FreeCAD 1.1 (Flatpak) on Linux Mint 22.2, using the **PartDesign** workbench for the solid features and the **Sketcher** workbench for the sketches.
+
+#. Created a new document and a PartDesign ``Body``.
+#. **Sheet outline.** Created a sketch on the ``XY_Plane`` and, in the Sketcher workbench, drew a square. I constrained it to be fully defined: horizontal/vertical edges, 1000 mm sides, and symmetric about the origin.
+#. **Sheet of metal.** Closed the sketch and used **Pad** with a length of 200 mm, giving a 1 m x 1 m x 20 cm plate. I set the Body's material to *Steel* so it really is a sheet of metal.
+#. **Initials.** Created a second sketch on the ``XY_Plane``, offset 200 mm in Z (``AttachmentOffset``) so it sits on the top face of the plate. In the Sketcher workbench I drew the outlines of block letters **G** and **M** (500 mm tall, 80 mm strokes) as closed polylines with coincident constraints at every corner.
+#. **Carving.** Closed the sketch and used **Pocket** with a length of 50 mm, carving the initials 5 cm deep into the metal.
+#. **Checking the result.** The final solid is valid, its bounding box is 1000 x 1000 x 200 mm, and the volume removed is 11,140,000 mm\ :sup:`3`. That is exactly the area of the two letters (104,400 + 118,400 mm\ :sup:`2`) times the 50 mm depth.
+
+Files
+-----
+
+All source files are in the `docs/ <https://github.com/greysonbmiller/eco-libre-volunteer-test/tree/main/docs>`_ directory of this repo:
+
+* `gm-eco-libre-volunteer-test.FCStd <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/gm-eco-libre-volunteer-test.FCStd>`_: the FreeCAD model
+* `gm-recordmydesktop.ogv <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/gm-recordmydesktop.ogv>`_: the source screen recording from ``recordmydesktop``
+* `gm-eco-libre-volunteer-test.kdenlive <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/gm-eco-libre-volunteer-test.kdenlive>`_: the kdenlive project
+* `Jahzzar_-_01_-_Dummy.mp3 <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/Jahzzar_-_01_-_Dummy.mp3>`_: the background soundtrack
+* `gm-eco-libre-volunteer-test.mp4 <https://github.com/greysonbmiller/eco-libre-volunteer-test/blob/main/docs/gm-eco-libre-volunteer-test.mp4>`_: the final 30 second video rendered by kdenlive
+
+Music Attribution
+-----------------
+
+The background soundtrack is `"Dummy" <https://archive.org/details/Grab_Bag-12446>`_ by **Jahzzar**, from the album *Grab Bag*, via the `Free Music Archive <https://freemusicarchive.org/music/Jahzzar/Grab_Bag/>`_. It is licensed under `CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0/>`_, which is compatible with the CC BY-SA 4.0 license of the video.
+
+Tips for Future Volunteers
+--------------------------
+
+This section documents what I learned while completing the Eco-Libre Volunteer Test, to help the next person.
 
 Linux
 ^^^^^
 
-I had some issues installing Linux as an HVM on my system running Qubes. First I used Linux Mint, but then I found that ``freecad`` is not available in the apt repos.
+I used Linux Mint 22.2 (Cinnamon), which is based on Ubuntu 24.04. Like Michael Altfield found with Linux Mint, ``freecad`` is **not** available in its apt repos. Instead of switching distros, I installed FreeCAD and kdenlive from `Flathub <https://flathub.org/>`_, which also gives much newer versions than apt (FreeCAD 1.1 and kdenlive 26.08 instead of kdenlive 23.08):
 
-I spent some time researching alternative Linux Distros that are based on Debian and default to xfce. I'm not sure if all of these satisfy these two requirements, but initial searching suggested MX Linux, Peppermint Linux, Xubuntu, Linux Lite, Void Linux, and ExTiX Linux.
+.. code-block:: bash
 
-After considering these options, I decided to ditch xfce when I found-out that cinnamon was created after the gnome UI changes in v3. I read that cinnamon was similar to xfce.
+   flatpak install --user flathub org.freecad.FreeCAD org.kde.kdenlive
+   sudo apt install recordmydesktop python3-sphinx python3-sphinx-rtd-theme python3-git inkscape gimp
 
-**I decided to use Linux Mint Debian Edition (LMDE)** because it has a huge user base, lots of video tutorials online (which would help future Eco-Libre volunteers using linux for the first time), it's Debian-based (so it has ``freecad`` in its default repos), and it uses Cinnamon DE by default (so it should be lightweight and fairly easy to use for first-time Linux users).
+Flatpak apps can't see files in ``/tmp``, so keep your work somewhere in your home directory.
 
-Installing LMDE failed on the first time, because Qubes gives it three disks, and I didn't know which disks to use. I wanted to use an HVM, so the private storage disk was irrelevant. I set the system storage disk to 40 GB, and I installed the OS on that (/dev/xvda). The problem was that, after configuring the partition layout, it defaulted to installing the (grub?) bootloader on /dev/xvdb. And then, after the reboot after the install, the system failed to boot. The fix was to install both the OS *and* grub to /dev/xvda. This isn't going to be an issue for others, as it's a complexity created by Qubes. Most users will probably just have 1 physical disk on their computer, so installing LMDE will be easier.
+FreeCAD
+^^^^^^^
 
-Sphinx
-^^^^^^
+* Draw letters as **closed outlines**, not single strokes. Pocket needs closed wires that don't cross themselves. Block letters made from straight segments are the easiest.
+* Put the initials sketch on the **top face** of the plate (or on the XY plane offset by the plate thickness). A Pocket cuts in the direction opposite the sketch normal, down into the metal.
+* In FreeCAD 1.x the sketch attachment property is called ``AttachmentSupport`` (it was ``Support`` in 0.x), which matters if you follow older tutorials or Python examples.
 
-I had some issues getting this sphinx documentation site to build in GitHub.
+Music
+^^^^^
 
-I started by copying all of the files from `this repo <https://github.com/maltfield/rtd-github-pages>`_, as described in `this article <https://tech.michaelaltfield.net/2020/07/18/sphinx-rtd-github-pages-1/>`_
+Only CC0, CC BY, and CC BY-SA music can be used in a CC BY-SA video. **NC (NonCommercial) and ND (NoDerivatives) licenses are not compatible.** The archive.org search linked from the test instructions filters out NC, but always double-check the license on the album page. The license is also usually written in the MP3's metadata (``ffprobe`` shows it).
 
-I had a permissions issue on the CI workflow, which tried to create a new 'gh-pages' branch and push to it. This is because GitHub changed the UI/process required to get the CI to run properly. The solution was described in `commit a07329b76d7017cc5171ddf321deec0b148f4bbb <https://github.com/maltfield/eco-libre-volunteer-test/commit/a07329b76d7017cc5171ddf321deec0b148f4bbb>`_
+Sphinx and GitHub Pages
+^^^^^^^^^^^^^^^^^^^^^^^
 
-::
+I forked `Michael Altfield's volunteer test repo <https://github.com/maltfield/eco-libre-volunteer-test/>`_, which already has a working Sphinx + Read the Docs theme + GitHub Actions setup (see `this article <https://tech.michaelaltfield.net/2020/07/18/sphinx-rtd-github-pages-1/>`_). After forking:
 
-   I attempted to fix this from the GitHub WUI by going to:
-   
-   Repo -> Settings -> Actions -> General -> Workflow permissions
-   
-   * https://github.com/maltfield/eco-libre-volunteer-test/settings/actions
-   
-   On that page, I changed it from "Read repository contents and
-   packages permissions" to "Read and write permissions"
+#. **Settings -> Actions -> General -> Workflow permissions**: choose "Read and write permissions", so the CI can push the ``gh-pages`` branch.
+#. **Actions tab**: GitHub disables workflows on forks. Click "I understand my workflows, go ahead and enable them".
+#. **Settings -> Pages**: deploy from the ``gh-pages`` branch, ``/ (root)``.
+#. In ``docs/conf.py``, change ``github_user`` to your username and ``github_version`` to ``main/docs/`` so the "Edit on GitHub" link works.
 
-After the GitHub CI container had permissions, the site failed to redirect because `GitHub changed 'master' to 'main' <https://github.com/github/renaming>`_, so I `had to change <https://github.com/maltfield/eco-libre-volunteer-test/commit/eca22a0a76a21f1202490b6b643bbcd768860663>`_ the script to say ``main`` instead of ``master``.
+You can also build the site locally before pushing: ``make -C docs html`` and then open ``docs/_build/html/index.html``.
 
-I then had some trouble embedding the PeerTube video. I wanted to use an existing open-source directive, but both of them were broken for different reasons (see `commit history <https://github.com/maltfield/eco-libre-volunteer-test/commits/main/?since=2026-02-27&until=2026-02-27>`_ for more details). In the end, I just settled by passing the "embed" code into a `raw directive <https://docutils.sourceforge.io/docs/ref/rst/directives.html#raw-data-pass-through>`_.
+PeerTube
+^^^^^^^^
 
-These issues should not be problems for subsequent users, as the intention of me doing this test is so that future volunteers can simply clone `this git repo <https://github.com/maltfield/eco-libre-volunteer-test/>`_, which has already solved *most* of these problems (though permissions issues in GitHub, as described above, may change again in the future).
+Most PeerTube instances require an admin to approve new accounts. The `JoinPeerTube instance list <https://joinpeertube.org/instances>`_ lets you filter for instances with open registration. The video embed above uses the "Embed" code from PeerTube's *Share* dialog, passed through a `raw directive <https://docutils.sourceforge.io/docs/ref/rst/directives.html#raw-data-pass-through>`_.
+
+License
+-------
+
+This site and the media in this repo are licensed `CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>`_ (code is GPLv3). It is based on `Michael Altfield's Eco-Libre Volunteer Test <https://github.com/maltfield/eco-libre-volunteer-test/>`_, also CC BY-SA.

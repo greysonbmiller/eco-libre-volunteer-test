@@ -1,8 +1,12 @@
-![docs_pages_workflow](https://github.com/maltfield/eco-libre-volunteer-test/actions/workflows/docs_pages_workflow.yml/badge.svg?branch=main)
+![docs_pages_workflow](https://github.com/greysonbmiller/eco-libre-volunteer-test/actions/workflows/docs_pages_workflow.yml/badge.svg?branch=main)
 
-# Michael Alfield’s Eco-Libre Volunteer Test
+# Greyson Miller’s Eco-Libre Volunteer Test
 
-This repo hold the GitHub Pages documentation site, which is the deliverable for Michael Altfield's Volunteer Test of the Eco-Libre project
+This repo holds the GitHub Pages documentation site, which is the deliverable for Greyson Miller's Volunteer Test of the Eco-Libre project:
+
+ * https://greysonbmiller.github.io/eco-libre-volunteer-test/
+
+It is a fork of [Michael Altfield's Eco-Libre Volunteer Test](https://github.com/maltfield/eco-libre-volunteer-test).
 
 The GitHub Pages site is built with Sphinx using the Read The Docs theme. For more info on how this works, see:
 

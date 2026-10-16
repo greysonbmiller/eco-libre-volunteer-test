@@ -19,9 +19,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'maltfield-volunteer-test'
-copyright = '2026, Michael Altfield'
-author = 'Michael Altfield'
+project = 'greysonbmiller-volunteer-test'
+copyright = '2026, Greyson Miller'
+author = 'Greyson Miller'
 
 # The short X.Y version
 version = ''
@@ -62,7 +62,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -106,7 +106,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'helloWorlddoc'
+htmlhelp_basename = 'eco-libre-volunteer-test-doc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -133,8 +133,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'helloWorld.tex', "MA's Volunteer Test",
-     'Michael Altfield', 'manual'),
+    (master_doc, 'eco-libre-volunteer-test.tex', "GM's Volunteer Test",
+     'Greyson Miller', 'manual'),
 ]
 
 
@@ -143,7 +143,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'helloworld', 'helloWorld Documentation',
+    (master_doc, 'eco-libre-volunteer-test', "Greyson Miller's Eco-Libre Volunteer Test",
      [author], 1)
 ]
 
@@ -154,8 +154,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'helloWorld', 'helloWorld Documentation',
-     author, 'helloWorld', 'One line description of project.',
+    (master_doc, 'eco-libre-volunteer-test', "Greyson Miller's Eco-Libre Volunteer Test",
+     author, 'eco-libre-volunteer-test', "Greyson Miller's Eco-Libre Volunteer Test",
      'Miscellaneous'),
 ]
 
@@ -265,7 +265,7 @@ html_context['downloads'].append( ('epub', '/' +REPO_NAME+ '/' +current_language
 ##########################
  
 html_context['display_github'] = True
-html_context['github_user'] = 'maltfield'
+html_context['github_user'] = 'greysonbmiller'
 html_context['github_repo'] = REPO_NAME
-html_context['github_version'] = 'master/docs/'
+html_context['github_version'] = 'main/docs/'
  
